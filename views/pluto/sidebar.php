@@ -29,7 +29,9 @@
          
          <?php if ($user_role === 'admin'): ?>
             <li><a href="<?= base_url('admin/themes.php') ?>"><i class="fa fa-paint-brush purple_color"></i> <span>Ganti Tema</span></a></li>
-            <li><a href="<?= base_url('users/index.php') ?>"><i class="fa fa-users yellow_color"></i> <span>Manajemen Petugas</span></a></li>
+            <li><a href="<?= base_url('admin/index.php') ?>"><i class="fa fa-users yellow_color"></i> <span>Manajemen Petugas</span></a></li>
+            <li><a href="<?= base_url('anggota/index.php') ?>"><i class="fa fa-users blue_color"></i> <span>Manajemen anggota</span></a></li>
+            <li><a href="<?= base_url('admin/themes.php') ?>"><i class="fa fa-paint-brush purple_color"></i> <span>Ganti Tema</span></a></li>
          <?php endif; ?>
 
          <li><a href="<?= base_url('logout.php') ?>"><i class="fa fa-sign-out red_color"></i> <span>Log Out</span></a></li>

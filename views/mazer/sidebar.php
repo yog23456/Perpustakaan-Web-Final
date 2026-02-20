@@ -62,6 +62,14 @@
                         <span>Manajemen Petugas</span>
                     </a>
                 </li>
+                <?php if ($user_role === 'admin'): ?>
+            <div class="sidebar-item">
+                <a href="<?= base_url('anggota/index.php') ?>" class="sidebar-link">
+                    <i class="bi bi-people"></i>
+                    <span>Manajemen anggota</span>
+                </a>
+            </div>
+        <?php endif; ?>
                 <li class="sidebar-item">
                     <a href="<?= base_url('admin/themes.php') ?>" class="sidebar-link">
                         <i class="bi bi-palette"></i>

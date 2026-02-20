@@ -350,4 +350,65 @@ function updateMasterTotalFromDetail(
 
     return $success;
 }
+
+function backupDatabasePerpus($customName = 'perpus_backup') {
+    global $connection;
+
+    // 1. Tentukan lokasi folder backup
+    $backupDirInternal = __DIR__ . '/../backups';
+    if (!is_dir($backupDirInternal)) {
+        mkdir($backupDirInternal, 0755, true); 
+    }
+    
+    $backupDirExternal = 'C:/laragon/bin/mysql/mysql-8.4.3-winx64/bin';
+    
+    // 2. Buat nama file dengan stempel waktu
+    $customName = !empty($customName) ? $customName : 'perpus_backup';
+    $filename = sanitize($customName) . '_' . date('d_m_Y_His') . '.sql';
+    $pathInternal = $backupDirInternal . '/' . $filename;
+    $pathExternal = $backupDirExternal . '/' . $filename;
+
+    // 3. Konfigurasi Database
+    $dbHost = "localhost";
+    $dbUser = "root";
+    $dbPass = "";
+    $dbName = "perpustakaan";
+
+    // 4. Path mysqldump Laragon
+    $mysqldumpPath = 'C:/laragon/bin/mysql/mysql-8.4.3-winx64/bin/mysqldump.exe';
+
+    // 5. BACKUP KE LOKASI INTERNAL (folder backups di project)
+    $commandInternal = sprintf(
+        '"%s" --user=%s --password=%s --host=%s %s > "%s"',
+        $mysqldumpPath, $dbUser, $dbPass, $dbHost, $dbName, $pathInternal
+    );
+    exec($commandInternal . ' 2>&1', $outputInternal, $returnCodeInternal);
+
+    // 6. BACKUP KE LOKASI EXTERNAL (folder mysql/bin)
+    $commandExternal = sprintf(
+        '"%s" --user=%s --password=%s --host=%s %s > "%s"',
+        $mysqldumpPath, $dbUser, $dbPass, $dbHost, $dbName, $pathExternal
+    );
+    exec($commandExternal . ' 2>&1', $outputExternal, $returnCodeExternal);
+
+    // 7. Cek hasil backup
+    if ($returnCodeInternal === 0 && file_exists($pathInternal)) {
+        $message = "✅ Backup berhasil disimpan di folder 'backups'";
+        
+        // Cek apakah backup eksternal juga berhasil
+        if ($returnCodeExternal === 0 && file_exists($pathExternal)) {
+            $message .= " dan 'mysql/bin'";
+        } else {
+            $message .= " (WARNING: Gagal menyimpan ke mysql/bin)";
+        }
+        
+        return ['success' => true, 'file' => $filename, 'message' => $message];
+    } else {
+        $errorMsg = "Internal: " . implode("\n", $outputInternal);
+        if ($returnCodeExternal !== 0) {
+            $errorMsg .= "\nExternal: " . implode("\n", $outputExternal);
+        }
+        return ['success' => false, 'error' => $errorMsg];
+    }
+}
 ?>
