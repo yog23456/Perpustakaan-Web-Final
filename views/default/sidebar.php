@@ -71,6 +71,12 @@ $user_role = $_SESSION['role'] ?? 'guest';
                     <span>Manajemen anggota</span>
                 </a>
             </div>
+            <div class="sidebar-item">
+                <a href="<?= base_url('admin/backup_data.php') ?>" class="sidebar-link">
+                    <i class="bi bi-people"></i>
+                    <span>backup database</span>
+                </a>
+            </div>
         <?php endif; ?>
 
         <?php if ($user_role === 'admin'): ?>

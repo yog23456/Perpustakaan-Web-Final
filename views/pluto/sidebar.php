@@ -26,11 +26,13 @@
          <li><a href="<?= base_url('buku/index.php') ?>"><i class="fa fa-book blue1_color"></i> <span>Data Buku</span></a></li>
          <li><a href="<?= base_url('peminjaman/index.php') ?>"><i class="fa fa-clock-o orange_color"></i> <span>Peminjaman</span></a></li>
          <li><a href="<?= base_url('pengembalian/index.php') ?>"><i class="fa fa-check-square green_color"></i> <span>Pengembalian</span></a></li>
+         <li><a href="<?= base_url('admin/laporan_peminjaman.php') ?>"><i class="fa fa-check-square green_color"></i> <span>laporan peminjaman</span></a></li>
+         <li><a href="<?= base_url('admin/laporan_pengembalian.php') ?>"><i class="fa fa-check-square green_color"></i> <span>laporan pengembalian</span></a></li>
          
          <?php if ($user_role === 'admin'): ?>
-            <li><a href="<?= base_url('admin/themes.php') ?>"><i class="fa fa-paint-brush purple_color"></i> <span>Ganti Tema</span></a></li>
             <li><a href="<?= base_url('admin/index.php') ?>"><i class="fa fa-users yellow_color"></i> <span>Manajemen Petugas</span></a></li>
             <li><a href="<?= base_url('anggota/index.php') ?>"><i class="fa fa-users blue_color"></i> <span>Manajemen anggota</span></a></li>
+            <li><a href="<?= base_url('admin/backup_data.php') ?>"><i class="fa fa-book blue1_color"></i> <span>backup database</span></a></li>
             <li><a href="<?= base_url('admin/themes.php') ?>"><i class="fa fa-paint-brush purple_color"></i> <span>Ganti Tema</span></a></li>
          <?php endif; ?>
 

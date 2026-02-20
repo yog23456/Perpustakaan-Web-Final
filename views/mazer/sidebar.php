@@ -52,6 +52,18 @@
                         <span>Pengembalian</span>
                     </a>
                 </li>
+                <div class="sidebar-item">
+                    <a href="<?= base_url('admin/laporan_peminjaman.php') ?>" class="sidebar-link">
+                        <i class="bi bi-file-earmark-pdf"></i>
+                        <span>Laporan Peminjaman</span>
+                    </a>
+                </div>
+                <div class="sidebar-item">
+                    <a href="<?= base_url('admin/laporan_pengembalian.php') ?>" class="sidebar-link">
+                        <i class="bi bi-file-earmark-bar-graph"></i>
+                        <span>Laporan Pengembalian</span>
+                    </a>
+                </div>
                 <?php endif; ?>
 
                 <?php if ($user_role === 'admin'): ?>
@@ -63,13 +75,21 @@
                     </a>
                 </li>
                 <?php if ($user_role === 'admin'): ?>
-            <div class="sidebar-item">
-                <a href="<?= base_url('anggota/index.php') ?>" class="sidebar-link">
-                    <i class="bi bi-people"></i>
-                    <span>Manajemen anggota</span>
-                </a>
-            </div>
-        <?php endif; ?>
+                    <div class="sidebar-item">
+                        <a href="<?= base_url('anggota/index.php') ?>" class="sidebar-link">
+                            <i class="bi bi-people"></i>
+                            <span>Manajemen anggota</span>
+                        </a>
+                    </div>
+                <?php endif; ?>
+                <?php if ($user_role === 'admin'): ?>
+                    <div class="sidebar-item">
+                        <a href="<?= base_url('admin/backup_data.php') ?>" class="sidebar-link">
+                            <i class="bi bi-people"></i>
+                            <span>backup database</span>
+                        </a>
+                    </div>
+                <?php endif; ?>
                 <li class="sidebar-item">
                     <a href="<?= base_url('admin/themes.php') ?>" class="sidebar-link">
                         <i class="bi bi-palette"></i>
